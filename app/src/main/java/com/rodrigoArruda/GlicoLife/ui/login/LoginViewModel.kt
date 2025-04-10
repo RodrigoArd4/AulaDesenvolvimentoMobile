@@ -1,4 +1,4 @@
-package com.jailton.androidapptemplate.ui.login
+package com.rodrigoArruda.GlicoLife.ui.login
 
 import androidx.lifecycle.ViewModel
 

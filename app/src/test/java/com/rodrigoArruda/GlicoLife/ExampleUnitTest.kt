@@ -1,4 +1,4 @@
-package com.jailton.androidapptemplate
+package com.rodrigoArruda.GlicoLife
 
 import org.junit.Test
 

@@ -1,5 +1,6 @@
-package com.jailton.androidapptemplate.ui.usuario
+package com.rodrigoArruda.GlicoLife.ui.usuario
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,9 +20,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.jailton.androidapptemplate.R
-import com.jailton.androidapptemplate.baseclasses.Usuario
-import com.jailton.androidapptemplate.databinding.FragmentPerfilUsuarioBinding
+import com.rodrigoArruda.GlicoLife.R
+import com.rodrigoArruda.GlicoLife.baseclasses.Usuario
+import com.rodrigoArruda.GlicoLife.databinding.FragmentPerfilUsuarioBinding
 
 class PerfilUsuarioFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class PerfilUsuarioFragment : Fragment() {
     private lateinit var registerEnderecoEditText: EditText
     private lateinit var registerPasswordEditText: EditText
     private lateinit var registerConfirmPasswordEditText: EditText
+    private lateinit var novoCampoEditText: EditText
     private lateinit var registerButton: Button
     private lateinit var sairButton: Button
     private lateinit var usersReference: DatabaseReference
@@ -42,6 +44,7 @@ class PerfilUsuarioFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,6 +61,7 @@ class PerfilUsuarioFragment : Fragment() {
         registerEnderecoEditText = view.findViewById(R.id.registerEnderecoEditText)
         registerPasswordEditText = view.findViewById(R.id.registerPasswordEditText)
         registerConfirmPasswordEditText = view.findViewById(R.id.registerConfirmPasswordEditText)
+        novoCampoEditText = view.findViewById(R.id.novoCampoEditText)
         registerButton = view.findViewById(R.id.registerButton)
         sairButton = view.findViewById(R.id.sairButton)
 
@@ -74,6 +78,7 @@ class PerfilUsuarioFragment : Fragment() {
 
         if (user != null) {
             sairButton.visibility = View.VISIBLE
+
             registerPasswordEditText.visibility = View.GONE
             registerConfirmPasswordEditText.visibility = View.GONE
             registerEmailEditText.isEnabled = false
