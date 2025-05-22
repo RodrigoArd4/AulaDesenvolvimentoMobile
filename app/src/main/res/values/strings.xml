@@ -20,4 +20,5 @@
     <string name="foto_de_perfil">Foto de perfil</string>
     <string name="endereco">Endereço</string>
     <string name="atualizar">Atualizar</string>
+    <string name="texto_padrao">Texto padrão</string>
 </resources>
