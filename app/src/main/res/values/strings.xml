@@ -21,4 +21,5 @@
     <string name="endereco">Endereço</string>
     <string name="atualizar">Atualizar</string>
     <string name="texto_padrao">Texto padrão</string>
+    <string name="title_itens">Itens</string>
 </resources>
