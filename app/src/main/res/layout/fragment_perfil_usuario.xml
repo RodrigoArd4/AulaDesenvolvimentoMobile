@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Atualização de Usuário"
+        android:text="@string/atualizacao_perfil_usuario"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,24 +28,27 @@
         app:layout_constraintTop_toBottomOf="@id/textCadastroUsuarioTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="Foto de perfil"/>
+        android:contentDescription="@string/foto_de_perfil"/>
 
 
     <EditText
         android:id="@+id/registerNameEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Nome"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="@dimen/edit_text_height"
+        android:autofillHints="name"
+        android:hint="@string/nome"
         android:layout_marginTop="16dp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userProfileImageView"/>
 
     <EditText
         android:id="@+id/registerEmailEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Email"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="@dimen/edit_text_height"
+        android:autofillHints="emailAddress"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintTop_toBottomOf="@id/registerNameEditText"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,45 +56,49 @@
 
     <EditText
         android:id="@+id/registerEnderecoEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Endereço"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="@dimen/edit_text_height"
+        android:autofillHints=""
+        android:hint="@string/endereco"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerEmailEditText" />
 
-    <EditText
+   <EditText
         android:id="@+id/registerPasswordEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Senha"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="@dimen/edit_text_height"
+       android:autofillHints="password"
+       android:hint="@string/senha"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/registerEnderecoEditText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/registerEnderecoEditText" />
 
     <EditText
         android:id="@+id/registerConfirmPasswordEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Confirmar Senha"
+        android:layout_width="@dimen/edit_text_width"
+        android:layout_height="@dimen/edit_text_height"
+        android:autofillHints="password"
+        android:hint="@string/confirmar_senha"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText"/>
 
     <Button
         android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Atualizar"
+        android:text="@string/atualizar"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswordEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/sairButton"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:text="Sair"
         app:layout_constraintTop_toBottomOf="@id/salvarButton"
