@@ -3,6 +3,7 @@ package com.rodrigoArruda.GlicoLife.ui.home
 import android.Manifest
 import android.content.pm.PackageManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import android.widget.*
 import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.location.Location
+import android.net.Uri
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatDelegate
@@ -35,9 +37,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.rodrigoArruda.GlicoLife.R
 import com.rodrigoArruda.GlicoLife.baseclasses.Item
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class HomeFragment : Fragment() {
-
+    private var lastKnownLocation: Location? =null
     private var _binding: FragmentHomeBinding? = null
     private lateinit var currentAddressTextView: TextView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -62,6 +69,25 @@ class HomeFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
+        // 🔽 NOVO: Ação do botão "Abrir no Maps"
+        val openInMapsButton = view.findViewById<Button>(R.id.openInMapsButton)
+        openInMapsButton.setOnClickListener {
+            if (lastKnownLocation != null) {
+                val latitude = lastKnownLocation!!.latitude
+                val longitude = lastKnownLocation!!.longitude
+                val uri = "geo:$latitude,$longitude?q=$latitude,$longitude(Minha+Localização)"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                intent.setPackage("com.google.android.apps.maps")
+                try {
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "Google Maps não encontrado", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Localização não disponível ainda", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -73,6 +99,7 @@ class HomeFragment : Fragment() {
             requestLocationPermission()
         } else {
             getCurrentLocation()
+
         }
 
 
@@ -178,6 +205,7 @@ class HomeFragment : Fragment() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult.lastLocation?.let { location ->
+                    lastKnownLocation = location
                     displayAddress(location)
                 }
             }

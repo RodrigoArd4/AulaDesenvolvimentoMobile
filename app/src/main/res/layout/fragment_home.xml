@@ -29,6 +29,13 @@
             android:layout_height="wrap_content"
             android:thumbTint="@color/black"
             android:trackTint="@color/darker_gray"/>
+
+        <Button
+            android:id="@+id/openInMapsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Abrir no Google Maps" />
     </LinearLayout>
 
     <TextView
